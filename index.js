@@ -1,5 +1,5 @@
 import { firstNames, lastNames, occupations } from "./citizenTools/lists.js";
-import { randomArrayItem } from "./utils/tools.js";
+import { randomArrayItem, minMax } from "./utils/tools.js";
 
 const createPopulace = (pop) => {
     let populace = [];
@@ -9,10 +9,23 @@ const createPopulace = (pop) => {
             firstName: randomArrayItem(firstNames),
             lastName: randomArrayItem(lastNames),
             occupation: randomArrayItem(occupations),
-            age: Math.floor(Math.random() * (75 - 18) + 18)
+            age: minMax(18, 65),
+            species: "Human",
+            cash: minMax(10, 1000000),
+            alive: true,
+            stats: {
+                guts: minMax(1, 100),
+                sexAppeal: minMax(1, 100),
+                occultism: minMax(1, 100),
+                vapeSkill: minMax(1, 100),
+                kinkyness: minMax(1, 100),
+                readingLevel: minMax(1, 12),
+                cookiesClear: minMax(0, 1),
+                paranoia: minMax(1, 100),
+            }
         }
         console.log(citizen)
     }
 }
 
-createPopulace(5);
+createPopulace(15);
