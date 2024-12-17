@@ -1,0 +1,11 @@
+{
+    "typeCheckingMode": "basic", // Use "basic" mode to catch common issues without being overly strict
+    "exclude": [
+        "**/node_modules", // Ignore third-party libraries or dependencies
+        "**/venv", // Ignore virtual environments
+        "**/__pycache__" // Ignore Python's cache directories
+    ],
+    "reportMissingImports": false, // Disable errors for missing imports (useful for prototyping)
+    "reportOptionalSubscript": false, // Avoid warnings for Optional types without explicit checks
+    "reportOptionalMemberAccess": false // Avoid warnings for accessing attributes of Optionals
+}
