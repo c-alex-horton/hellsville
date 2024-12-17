@@ -1,3 +1,4 @@
+from enum import unique
 from peewee import *
 from playhouse.migrate import SqliteMigrator, migrate
 
@@ -17,8 +18,8 @@ class Person(Model):
         database = db
 
 class TownStats(Model):
-    stat = CharField()
-    description = CharField()
+    stat = CharField(unique=True)
+    description = CharField(null=True)
     value = FloatField()
 
     class Meta:
@@ -28,11 +29,10 @@ def migrate_changes():
     migrator = SqliteMigrator(db)
     with db.atomic():
         migrate(
-            migrator.add_column('person', 'sullied', BooleanField(default=False)),
-            migrator.add_column('person', 'kill_count', IntegerField(default=0))
+            migrator.drop_not_null('townstats','description')
         )
 
 if __name__ == "__main__":
     db.connect()
-    db.create_tables([Person])
+    # db.create_tables([Person])
     migrate_changes()
